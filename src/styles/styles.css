@@ -1,0 +1,568 @@
+/* 1. Global Background */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0f172a; /* Standard Dark Midnight */
+  color: #f8fafc;
+}
+
+/* 2. Grid Arrangement */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+/* 3. The Card with Shimmer Animation */
+.card {
+  background: linear-gradient(135deg, #1e293b, #334155, #1e293b);
+  background-size: 300% 300%;
+  animation: cardShimmer 10s ease infinite;
+  
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all cards are same height */
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: #38bdf8;
+}
+
+/* 4. FIX: Image Wrapper to prevent overflow */
+.img-wrapper {
+  background: white;
+  height: 200px; /* Fixed height for the white box */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  overflow: hidden; /* Clips any overflow */
+  padding: 10px;
+}
+
+
+
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Keeps image inside without stretching */
+}
+
+/* 5. Content & Price */
+.card-content {
+  flex-grow: 1; /* Pushes the button to the bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  /* Limits title to 2 lines so buttons stay aligned */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+/* 6. Button - Continuous Rainbow Move */
+.btn {
+  display: block;
+  padding: 12px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  background: linear-gradient(90deg, #ef4444, #3b82f6, #10b981, #f59e0b, #ef4444);
+  background-size: 400% 100%;
+  animation: rainbowMove 4s linear infinite;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes cardShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes rainbowMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+.search {
+  width: 100%;
+  max-width: 600px; /* Standard width for search bars */
+  display: block;
+  margin: 0 auto 30px auto; /* Centers the bar with bottom spacing */
+  padding: 14px 20px;
+  
+  /* Standard Dark Look: Slate Navy with Transparency */
+  background: rgba(30, 41, 59, 0.7); 
+  backdrop-filter: blur(8px); /* Subtle glass effect */
+  
+  /* Initial Border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px; /* Pill shape for modern look */
+  
+  color: #f8fafc;
+  font-size: 16px;
+  outline: none;
+  
+  /* Smooth Transitions */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Subtle Continuous Border Glow Animation */
+  animation: searchGlow 6s infinite alternate;
+}
+
+/* Designing the Focus State */
+.search:focus {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: #38bdf8; /* Soft blue focus */
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px); /* Lifts slightly when typing */
+}
+
+/* Custom Placeholder Color */
+.search::placeholder {
+  color: #94a3b8;
+  transition: opacity 0.3s ease;
+}
+
+.search:focus::placeholder {
+  opacity: 0.5;
+}
+
+/* --- ANIMATION --- */
+
+@keyframes searchGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+.subheader {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+  padding: 10px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* 1. The Category Chip - Glassmorphism Style */
+.category-chip {
+  text-decoration: none;
+  text-transform: capitalize;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #94a3b8; /* Muted slate text */
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. Hover Interaction */
+.category-chip:hover {
+  color: #ffffff;
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. The Active State - Continuous Color Shimmer */
+/* NavLink automatically adds the 'active' class when 'to' matches the URL */
+.category-chip.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1e293b, #334155, #1e293b);
+  background-size: 200% 200%;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  animation: activeShimmer 4s linear infinite;
+}
+
+/* 4. Top Notch Continuous Animation for Active Chip */
+@keyframes activeShimmer {
+  0% { background-position: 0% 50%; border-color: #38bdf8; }
+  50% { background-position: 100% 50%; border-color: #c084fc; } /* Shifts to purple */
+  100% { background-position: 0% 50%; border-color: #38bdf8; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 600px) {
+  .subheader {
+    gap: 8px;
+  }
+  .category-chip {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
+/* 1. The Navbar Wrapper */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* 2. Floating Glass Dock */
+.navbar-inner {
+  width: 100%;
+  max-width: 900px; /* Slimmer, more elite look */
+  background: rgba(15, 23, 42, 0.7); /* Deep Slate with Transparency */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px; /* Perfect Pill Shape */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 20px 25px -5px rgba(0, 0, 0, 0.2),
+    inset 0 0 12px rgba(255, 255, 255, 0.02);
+}
+
+/* 3. Branding & Animated Logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 12px;
+  height: 12px;
+  background: #38bdf8;
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Breathing Aura around the logo */
+.brand-logo::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid #38bdf8;
+  animation: pulseAura 3s infinite;
+}
+
+.brand-text {
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.brand-text .dot {
+  color: #38bdf8;
+  animation: colorShift 4s infinite alternate;
+}
+
+/* 4. Menu Links with Underline Animation */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.menu-link:hover {
+  color: #fff;
+}
+
+.menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: #38bdf8;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+/* 5. Cart Button with High-Energy Animation */
+.cart-trigger {
+  background: #fff;
+  color: #950202;
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-trigger:hover {
+  transform: scale(1.05);
+}
+
+.cart-trigger:active {
+  transform: scale(0.95);
+}
+
+.count {
+  background: #000;
+  color: #fff;
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes pulseAura {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes colorShift {
+  0% { color: #38bdf8; }
+  50% { color: #c084fc; }
+  100% { color: #f472b6; }
+}
+
+/* Responsive Logic */
+@media (max-width: 768px) {
+  .navbar-inner {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+  .menu-link { display: none; }
+}
+/* 1. Page Layout */
+.about-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  color: #f8fafc;
+  line-height: 1.6;
+}
+
+/* 2. Hero Section - Massive Typography & Mesh Background */
+.about-hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1), transparent 70%);
+  border-radius: 40px;
+  margin-bottom: 80px;
+  animation: fadeIn 1s ease-out;
+}
+
+.about-hero h1 {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-hero p {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 3. General Section Styling */
+.about-section {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+  color: #38bdf8;
+}
+
+/* 4. Feature Cards - Animated Glassmorphism */
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 100px;
+}
+
+.feature-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #38bdf8;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #f8fafc;
+}
+
+.feature-card p {
+  color: #94a3b8;
+}
+
+/* 5. Stats Section - High Contrast Glow */
+.about-stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 60px;
+  background: #1e293b;
+  border-radius: 32px;
+  margin-bottom: 100px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.about-stats div {
+  text-align: center;
+}
+
+.about-stats h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+  background: linear-gradient(90deg, #38bdf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-stats p {
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* 6. CTA - The Big Finish */
+.about-cta {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  border-radius: 40px;
+  color: #0f172a;
+}
+
+.about-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.about-cta p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .about-stats { padding: 30px; }
+  .about-stats h2 { font-size: 2.5rem; }
+}
+/* Cart Link */
+.cart-link {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.cart-link:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 0 15px rgba(124,58,237,0.5);
+}
+
+/* Cart Badge */
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}

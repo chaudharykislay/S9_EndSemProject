@@ -1,0 +1,73 @@
+/* 1. Resetting the Vite Defaults */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Overriding Vite's center align */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Standard Deep Midnight Navy - Professional Dark Mode */
+  background-color: #020617; 
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 2. Main Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* 3. The Animated Catalog Title */
+.title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
+  font-weight: 900;
+  margin-bottom: 40px;
+  letter-spacing: -2px;
+  
+  /* Continuous Gradient Text Animation */
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc, #e11d48, #38bdf8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGradient 4s linear infinite;
+}
+
+/* 4. Layout Grid for Proper Arrangement */
+.grid {
+  display: grid;
+  /* Fits products properly: 1 col on mobile, 4+ on desktop */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding-bottom: 50px;
+}
+
+/* --- GLOBAL ANIMATIONS --- */
+
+@keyframes titleGradient {
+  to { background-position: 200% center; }
+}
+
+/* Page transition animation */
+.container {
+  animation: fadeInPage 0.8s ease-out;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 15px;
+  }
+}
