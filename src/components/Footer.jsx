@@ -8,7 +8,7 @@ function Footer() {
       <div className="footer-content">
 
         <div className="footer-left">
-          <h2 className="footer-logo">ShopiFY</h2>
+          <h2 className="footer-logo">ShopSphere</h2>
           <p className="footer-tagline">
             Modern API-driven product catalog experience.
           </p>
@@ -25,7 +25,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} ShopiFY. All Rights Reserved.
+        © {new Date().getFullYear()} ShopSphere. All Rights Reserved.
       </div>
     </footer>
   );

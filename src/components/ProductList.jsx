@@ -10,6 +10,8 @@ function ProductList() {
   const { name } = useParams(); // get category from URL
   const [search, setSearch] = useState("");
 
+  const username = localStorage.getItem("username") || "Guest";
+
   const filteredProducts = useMemo(() => {
     let filtered = products;
 
@@ -35,6 +37,18 @@ function ProductList() {
 
   return (
     <div className="product-list-page">
+
+      {/* 🔥 Welcome Section (Front Page Style) */}
+      {!name && (
+        <div className="welcome-banner">
+          <h1>Welcome back, {username} 👋</h1>
+          <p>
+            Discover premium products curated just for you.
+            Browse categories, explore collections, and shop smart.
+          </p>
+        </div>
+      )}
+
       <SearchBar search={search} setSearch={setSearch} />
 
       {name && (

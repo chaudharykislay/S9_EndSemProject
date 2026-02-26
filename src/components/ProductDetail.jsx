@@ -50,6 +50,7 @@ function ProductDetail() {
   return (
     <div className="product-detail">
       <div className="product-detail-container">
+       <div className="animated-bg"></div>
 
         <div className="product-detail-image">
           <img src={product.image} alt={product.title} />
